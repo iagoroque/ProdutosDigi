@@ -19,7 +19,7 @@ import com.iroque.marketplace.services.ProductService;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    
+
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -53,9 +53,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Produto deletado com sucesso!");
     }
-    
+
 }

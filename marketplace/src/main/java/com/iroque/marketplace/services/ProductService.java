@@ -1,6 +1,7 @@
 package com.iroque.marketplace.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class ProductService {
 
     public Product getProduct(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado com o ID: " + id));
     }
 
     public List<Product> getProductByName(String name) {
@@ -43,6 +44,10 @@ public class ProductService {
     }
 
     public void deleteProduct(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if (!product.isPresent()) {
+            throw new RuntimeException("Produto com ID " + id + " não encontrado.");
+        }
         productRepository.deleteById(id);
     }
 

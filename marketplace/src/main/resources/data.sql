@@ -1,2 +1,24 @@
 INSERT INTO product (name, description, price, quantity)
-VALUES ('Product 1', 'Description 1', 100, 10);
+VALUES
+('Processador Intel', 'i5-12500H', 999, 10),
+('Memória RAM', '8GB DDR4', 299, 20),
+('Placa de Vídeo', 'GTX 1080', 1999, 5),
+('Placa Mãe', 'Asus', 499, 10),
+('HD', '1TB', 399, 15),
+('SSD', '240GB', 299, 10),
+('Fonte', '600W', 199, 10),
+('Gabinete', 'ATX', 299, 10),
+('Monitor', '21"', 499, 10),
+('Teclado', 'Mecânico', 199, 10),
+('Mouse', 'Gamer', 199, 10),
+('Headset', '7.1', 299, 10),
+('Cadeira', 'Gamer', 999, 10),
+('Mesa', 'Gamer', 499, 10),
+('Tapete', 'Gamer', 99, 10),
+('Webcam', 'Full HD', 199, 10),
+('Microfone', 'Condensador', 299, 10),
+('Cadeira', 'Escritório', 299, 10),
+('Mesa', 'Escritório', 199, 10),
+('Tapete', 'Escritório', 49, 10),
+('Webcam', 'HD', 99, 10),
+('Microfone', 'USB', 99, 10);

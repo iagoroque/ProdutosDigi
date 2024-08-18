@@ -1,0 +1,20 @@
+.footer {
+    background-color: #282c34;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    bottom: 0;
+    width: 100%;
+
+    .digi {
+        margin: 0;
+        color: #626e85;
+        & a {
+            color: #626e85;
+        }
+    }
+}
+
+div {
+    font-size: 0.875rem;
+}
