@@ -2,11 +2,8 @@ package com.iroque.marketplace.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.Base64Utils;
 
 import com.iroque.marketplace.interfaces.ProductRepository;
 import com.iroque.marketplace.models.Product;
@@ -38,13 +35,11 @@ public class ProductService {
     }
 
     public Product updateProduct(Long id, Product updateProduct) {
-        byte[] imageBytes = Base64Utils.decodeFromString(new String(updateProduct.getImage()));
         Product product = getProduct(id);
         product.setName(updateProduct.getName());
         product.setDescription(updateProduct.getDescription());
         product.setPrice(updateProduct.getPrice());
         product.setQuantity(updateProduct.getQuantity());
-        product.setImage(imageBytes);
         return productRepository.save(product);
     }
 

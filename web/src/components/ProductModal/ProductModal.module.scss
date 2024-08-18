@@ -1,8 +1,9 @@
 .modal {
     max-width: 600px;
+    border-radius: 16px;
     display: flex;
-    background-color: #8f8f8f;
-    margin: auto;
+    background-color: #f0f0f0;
+    margin: 15% auto;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -14,10 +15,29 @@
         align-items: center;
         justify-content: center;
         gap: 16px;
+        width: 75%;
 
         & label {
             display: flex;
             flex-direction: column;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #282c34;
+            padding: .3rem .5rem;
+            font-size: 16px;
+            color: #fff;
+            border: white 1px solid;
+            border-radius: 5px;
+            width: 5rem;
+            cursor: pointer;
+    
+            &:hover {
+                background-color: white;
+                color: #282c34;
+            }
         }
     }
 }

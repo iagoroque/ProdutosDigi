@@ -11,4 +11,14 @@ VALUES
 ('Monitor', '21"', 499, 10),
 ('Teclado', 'Mecânico', 199, 10),
 ('Mouse', 'Gamer', 199, 10),
-('Headset', '7.1', 299, 10);
+('Headset', '7.1', 299, 10),
+('Cadeira', 'Gamer', 999, 10),
+('Mesa', 'Gamer', 499, 10),
+('Tapete', 'Gamer', 99, 10),
+('Webcam', 'Full HD', 199, 10),
+('Microfone', 'Condensador', 299, 10),
+('Cadeira', 'Escritório', 299, 10),
+('Mesa', 'Escritório', 199, 10),
+('Tapete', 'Escritório', 49, 10),
+('Webcam', 'HD', 99, 10),
+('Microfone', 'USB', 99, 10);

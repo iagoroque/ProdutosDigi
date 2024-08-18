@@ -8,7 +8,6 @@ interface Product {
     price: number;
     description: string;
     quantity: number;
-    image: string;
 }
 
 const ProductModal: React.FC<{
@@ -22,7 +21,6 @@ const ProductModal: React.FC<{
         price: product?.price || 0,
         description: product?.description || "",
         quantity: product?.quantity || 0,
-        image: removePrefix(product?.image) || "",
     });
 
     useEffect(() => {
@@ -33,45 +31,21 @@ const ProductModal: React.FC<{
                 price: product.price || 0,
                 description: product.description || "",
                 quantity: product.quantity || 0,
-                image: removePrefix(product.image) || "",
             });
         }
     }, [product]);
 
-    const convertToBase64 = (file: File): Promise<string> => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result as string);
-            reader.onerror = (error) => reject(error);
-        });
-    };
-
     const handleChange = async (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        const { name, value, files } = e.target as HTMLInputElement;
-        if (name === "image" && files && files[0]) {
-            const base64 = await convertToBase64(files[0]);
-            setFormData({ ...formData, [name]: base64 });
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
+        const { name, value } = e.target as HTMLInputElement;
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onSave(formData);
     };
-
-    function removePrefix(base64Image: string | null | undefined): string {
-        if (base64Image == null) {
-            return ''; 
-        }
-    
-        const regex = /^image\/[^;]+;base64,/;
-        return base64Image.replace(regex, '');
-    }
 
     return (
         <Modal
@@ -96,6 +70,7 @@ const ProductModal: React.FC<{
                     <input
                         type="number"
                         name="price"
+                        min={1}
                         value={formData.price}
                         onChange={handleChange}
                     />
@@ -113,13 +88,10 @@ const ProductModal: React.FC<{
                     <input
                         type="number"
                         name="quantity"
+                        min={0}
                         value={formData.quantity}
                         onChange={handleChange}
                     />
-                </label>
-                <label>
-                    Imagem:
-                    <input type="file" name="image" onChange={handleChange} />
                 </label>
                 <button type="submit">Salvar</button>
                 <button type="button" onClick={onClose}>

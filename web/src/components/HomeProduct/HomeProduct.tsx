@@ -9,7 +9,6 @@ interface Product {
     price: number;
     description: string;
     quantity: number;
-    image: string;
 }
 
 const HomeProduct: React.FC = () => {
@@ -36,19 +35,21 @@ const HomeProduct: React.FC = () => {
         setCurrentProduct(product);
         setIsModalOpen(true);
     };
-    
+
     const closeModal = () => {
         setIsModalOpen(false);
         setCurrentProduct(null);
     };
-    
-    const saveProduct = (updatedProduct: Product) => {
+
+    const updateProduct = (updatedProduct: Product) => {
         productsFetch
             .put(`/products/update/${updatedProduct.id}`, updatedProduct)
             .then(() => {
                 setProducts(
                     products.map((product) =>
-                        product.id === updatedProduct.id ? updatedProduct : product
+                        product.id === updatedProduct.id
+                            ? updatedProduct
+                            : product
                     )
                 );
                 closeModal();
@@ -59,17 +60,9 @@ const HomeProduct: React.FC = () => {
         <div className={s.gridContainer}>
             {products.map((product) => (
                 <div key={product.id} className={s.productCard}>
-                    <img
-                        src={
-                            product.image
-                                ? `data:image/jpeg;base64,${product.image}`
-                                : "src/assets/image.jpeg"
-                        }
-                        alt=""
-                    />
-                    <h2>{product.name}</h2>
+                    <h4>{product.name}</h4>
                     <p>{product.description}</p>
-                    <h5>Preço - R$ {product.price}</h5>
+                    <h6>Preço - R$ {product.price}</h6>
                     <h6>Quantidade: {product.quantity}</h6>
                     <div>
                         <button onClick={() => deleteById(product.id)}>
@@ -82,7 +75,11 @@ const HomeProduct: React.FC = () => {
                 </div>
             ))}
             {isModalOpen && currentProduct && (
-                <ProductModal product={currentProduct} onClose={closeModal} onSave={saveProduct} />
+                <ProductModal
+                    product={currentProduct}
+                    onClose={closeModal}
+                    onSave={updateProduct}
+                />
             )}
         </div>
     );

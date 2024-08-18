@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #282c34;
+    border-bottom: 1px solid #ddd;
+
+    h1 {
+        margin-bottom: 10px;
+        color: #fff;
+    }
+}
