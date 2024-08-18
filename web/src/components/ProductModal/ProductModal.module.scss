@@ -1,0 +1,23 @@
+.modal {
+    max-width: 600px;
+    display: flex;
+    background-color: #8f8f8f;
+    margin: auto;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    
+    & form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+
+        & label {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import productsFetch from "../axios/ProductsFetch";
+import productsFetch from "../../axios/ProductsFetch";
 import s from "./HomeProduct.module.scss";
+import ProductModal from "../ProductModal/ProductModal";
 
 interface Product {
     id: number;
@@ -13,6 +14,8 @@ interface Product {
 
 const HomeProduct: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
 
     useEffect(() => {
         productsFetch.get<Product[]>("/products/all").then((response) => {
@@ -29,6 +32,29 @@ const HomeProduct: React.FC = () => {
         }
     }
 
+    const openModal = (product: Product) => {
+        setCurrentProduct(product);
+        setIsModalOpen(true);
+    };
+    
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setCurrentProduct(null);
+    };
+    
+    const saveProduct = (updatedProduct: Product) => {
+        productsFetch
+            .put(`/products/update/${updatedProduct.id}`, updatedProduct)
+            .then(() => {
+                setProducts(
+                    products.map((product) =>
+                        product.id === updatedProduct.id ? updatedProduct : product
+                    )
+                );
+                closeModal();
+            });
+    };
+
     return (
         <div className={s.gridContainer}>
             {products.map((product) => (
@@ -43,18 +69,21 @@ const HomeProduct: React.FC = () => {
                     />
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
-                    <p>Preço - R$ {product.price.toFixed(2)}</p>
-                    <p>Quantidade: {product.quantity}</p>
+                    <h5>Preço - R$ {product.price}</h5>
+                    <h6>Quantidade: {product.quantity}</h6>
                     <div>
                         <button onClick={() => deleteById(product.id)}>
                             <i className="ri-delete-bin-5-line"></i>
                         </button>
-                        <button>
+                        <button onClick={() => openModal(product)}>
                             <i className="ri-edit-2-line"></i>
                         </button>
                     </div>
                 </div>
             ))}
+            {isModalOpen && currentProduct && (
+                <ProductModal product={currentProduct} onClose={closeModal} onSave={saveProduct} />
+            )}
         </div>
     );
 };
