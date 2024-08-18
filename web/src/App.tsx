@@ -1,15 +1,11 @@
-import './App.css'
-import Product from './components/Product'
+import HomeProduct from "./components/HomeProduct";
 
 function App() {
-
-  return (
-    <>
-      <div>
-        <Product />
-      </div>
-    </>
-  )
+    return (
+        <>
+            <HomeProduct />
+        </>
+    );
 }
 
-export default App
+export default App;

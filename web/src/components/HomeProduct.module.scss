@@ -1,0 +1,21 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+
+    .productCard {
+        display: flex;
+        border: 1px solid #8f8f8f;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 75%;
+            height: auto;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
